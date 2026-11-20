@@ -1,0 +1,13 @@
+{
+  "name": "full-audit-marketplace",
+  "owner": {
+    "name": "Imagination12357"
+  },
+  "plugins": [
+    {
+      "name": "full-audit",
+      "source": "./",
+      "description": "Audit repositories for latent correctness defects, assess severity and confidence separately, and save resumable YAML checkpoints and Markdown reports."
+    }
+  ]
+}

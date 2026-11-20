@@ -1,0 +1,5 @@
+{
+  "name": "full-audit",
+  "version": "0.1.0",
+  "description": "Audit repositories for latent correctness defects, assess severity and confidence separately, and save resumable YAML checkpoints and Markdown reports."
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full Audit"
+  short_description: "Find correctness defects"
+  default_prompt: "Use $full-audit to audit this repository."
