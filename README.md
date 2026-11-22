@@ -48,11 +48,21 @@ In Claude Code, use `/sleuth-audit:sleuth-audit` with the same requests. When re
 
 1. Maps the selected codebase, entry points, invariants, and review units.
 2. Records review coverage and potential bugs with stable IDs.
-3. Traces failure conditions and checks suspected defects through code analysis or safe reproductions, including checks for guards and counterexamples.
-4. Separates confirmed defects from plausible leads and disproven claims.
+3. Traces how suspected failures could occur, checks for guards and counterexamples, and tests each claim through code analysis or safe reproduction.
+4. Records which defects it confirmed, which leads need more evidence, and which claims it ruled out.
 5. Saves the state and a readable report; unfinished audits can be resumed.
 
 An audit is complete when every in-scope review unit has been reviewed and each finding has been assessed or has a documented verification blocker. Findings with inconclusive evidence can remain in a completed audit. Completion does not guarantee that every defect was found.
+
+## Confidence
+
+Confidence records how strongly the evidence supports each finding. Sleuth Audit confirms a defect by reproducing it or proving from the code that the failure can occur. The report also records what remains uncertain and summarizes claims the audit ruled out.
+
+## Severity
+
+Severity describes the impact if a defect occurs. Sleuth Audit uses the Superpowers labels Critical (Must Fix), Important (Should Fix), and Minor (Nice to Have). It records severity as Unknown when the impact is unclear.
+
+A suspected bug that could cause major data loss can be marked `Critical / Possible` while the audit is still checking whether the failure can occur. See the [classification rules](skills/sleuth-audit/references/report-format.md#classification) for all levels.
 
 ## Output
 
@@ -70,13 +80,7 @@ For run `001`, the audited repository receives:
 
 Sleuth Audit leaves source files, tests, manifests, Git history, and `.gitignore` untouched. It does not install dependencies without permission or run destructive, external-effect, or unexpectedly expensive operations without approval. Generated files, caches, vendored code, and earlier `.audit/` runs are excluded by default unless the requested scope says otherwise.
 
-Bug fixes belong in a separate task after the audit records have been saved. Sleuth Audit does not track whether findings have been fixed or their fixes verified.
-
-## Severity
-
-Sleuth Audit uses the Superpowers severity labels: Critical (Must Fix), Important (Should Fix), and Minor (Nice to Have). It defines these levels by the impact of correctness defects. Style suggestions, documentation polish, and optional refactoring are outside the audit scope. An impact that cannot yet be judged is recorded as Unknown.
-
-Severity describes the impact if a defect occurs. Confidence records how well the evidence supports the finding. See the [classification rules](skills/sleuth-audit/references/report-format.md#classification) for the full definitions.
+Style suggestions, documentation polish, and optional refactoring are outside the audit scope. Bug fixes belong in a separate task after the audit records have been saved. Sleuth Audit does not track whether findings have been fixed or their fixes verified.
 
 ## Source layout
 
