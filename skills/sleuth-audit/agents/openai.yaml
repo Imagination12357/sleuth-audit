@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sleuth Audit"
+  short_description: "Find correctness defects"
+  default_prompt: "Use $sleuth-audit to audit this repository."

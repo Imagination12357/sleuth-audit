@@ -1,16 +1,16 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "full-audit",
+  "name": "sleuth-audit",
   "version": "0.1.0",
   "description": "Audit repositories for latent correctness defects, assess severity and confidence separately, and save resumable YAML checkpoints and Markdown reports.",
-  "repository": "https://github.com/Imagination12357/full-audit",
+  "repository": "https://github.com/Imagination12357/sleuth-audit",
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Full Audit",
+        "displayName": "Sleuth Audit",
         "shortDescription": "Find correctness defects",
         "defaultPrompt": [
-          "Use $full-audit to audit this repository."
+          "Use $sleuth-audit to audit this repository."
         ]
       }
     }

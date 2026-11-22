@@ -1,11 +1,11 @@
 {
-  "name": "full-audit-marketplace",
+  "name": "sleuth-audit-marketplace",
   "interface": {
-    "displayName": "Full Audit"
+    "displayName": "Sleuth Audit"
   },
   "plugins": [
     {
-      "name": "full-audit",
+      "name": "sleuth-audit",
       "source": {
         "source": "local",
         "path": "./"

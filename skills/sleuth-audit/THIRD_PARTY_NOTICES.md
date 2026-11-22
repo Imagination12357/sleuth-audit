@@ -2,7 +2,7 @@
 
 ## Superpowers
 
-Full Audit uses the severity labels Critical (Must Fix), Important (Should Fix), and Minor (Nice to Have) from the Superpowers code-review template. Full Audit defines these levels for correctness defects and excludes style suggestions, documentation polish, and optional refactoring. It also adds Unknown for impact that cannot yet be judged.
+Sleuth Audit uses the severity labels Critical (Must Fix), Important (Should Fix), and Minor (Nice to Have) from the Superpowers code-review template. Sleuth Audit defines these levels for correctness defects and excludes style suggestions, documentation polish, and optional refactoring. It also adds Unknown for impact that cannot yet be judged.
 
 Source: [Superpowers code-review template](https://github.com/obra/superpowers/blob/main/skills/requesting-code-review/code-reviewer.md). Reference package: Superpowers 7.0.1. Superpowers is not a runtime dependency.
 

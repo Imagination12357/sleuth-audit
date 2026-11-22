@@ -1,14 +1,14 @@
 # Audit report (`report.md`)
 
-Generate `<repo>/.audit/full-audit/<NNN>/report.md` from `state.yaml`. Keep the report self-contained, scannable, and grounded in source analysis and verification evidence. Write for a developer who needs to verify and act on the findings: use direct sentences, concrete conditions, and plain language. Cut filler, exaggerated claims, generic praise, and repetitive summaries. Preserve uncertainty when the evidence is incomplete. Findings are not fixes; never change code to make the report look complete.
+Generate `<repo>/.audit/sleuth-audit/<NNN>/report.md` from `state.yaml`. Keep the report self-contained, scannable, and grounded in source analysis and verification evidence. Write for a developer who needs to verify and act on the findings: use direct sentences, concrete conditions, and plain language. Cut filler, exaggerated claims, generic praise, and repetitive summaries. Preserve uncertainty when the evidence is incomplete. Findings are not fixes; never change code to make the report look complete.
 
 ## Classification
 
-Full Audit uses the severity labels from the Superpowers code-review template, including the parenthetical wording. Superpowers also reviews style, architecture, test gaps, and other improvements. Full Audit limits findings to correctness defects and defines severity by their impact, so its definitions differ from the original template.
+Sleuth Audit uses the severity labels from the Superpowers code-review template, including the parenthetical wording. Superpowers also reviews style, architecture, test gaps, and other improvements. Sleuth Audit limits findings to correctness defects and defines severity by their impact, so its definitions differ from the original template.
 
 Minor retains the label "Nice to Have" for compatibility and covers low-impact defects here. Unknown is an additional value for findings whose impact cannot yet be judged. See [third-party notices](../THIRD_PARTY_NOTICES.md) for the source and MIT license.
 
-| Severity | Meaning for full-audit |
+| Severity | Meaning for sleuth-audit |
 | --- | --- |
 | **Critical** (Must Fix) | Credible consequence is severe: e.g. major data loss/corruption, major security breach, or system-wide failure. |
 | **Important** (Should Fix) | Material correctness failure or meaningful functional/contract breakage under reachable conditions. |
@@ -32,7 +32,7 @@ Do not label a guess `Confirmed` because a line looks suspicious or a test suite
 Generate the report at completion or interruption, including a pause or blocker. Use the run status from `state.yaml`: Complete, Partial, or Blocked. Running is used only in state while work continues; refresh the report when that work completes or is interrupted.
 
 ```markdown
-# Full Audit — <project> — FA-<NNN>
+# Sleuth Audit — <project> — SA-<NNN>
 
 - Status: Complete | Partial | Blocked
 - Baseline: <Git revision / dirty state / any source drift>
@@ -42,7 +42,7 @@ Generate the report at completion or interruption, including a pause or blocker.
 <Counts by severity and confidence, key risks, and limitations>
 
 ## Findings
-### FA-<NNN>-<MMM> — <short title>
+### SA-<NNN>-<MMM> — <short title>
 - Severity / Confidence: <value> / <value>
 - Location: `<path>:<line range>` (or explain if unavailable)
 - Conditions: <concrete reachable scenario>

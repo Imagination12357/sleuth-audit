@@ -1,13 +1,13 @@
 # Run state (`state.yaml`)
 
-The authoritative, resumable record lives at `<repo>/.audit/full-audit/<NNN>/state.yaml`; the human-facing report is a derived view. Preserve valid existing records and unknown fields during updates. Use concise YAML, not a transcript of agent reasoning.
+The authoritative, resumable record lives at `<repo>/.audit/sleuth-audit/<NNN>/state.yaml`; the human-facing report is a derived view. Preserve valid existing records and unknown fields during updates. Use concise YAML, not a transcript of agent reasoning.
 
 This state tracks audit progress and the evidence supporting findings. It does not track fixes or verification of fixes. `complete` describes audit completion; `disproven` means the investigated claim was not a defect under the claimed conditions.
 
 ## Naming and lifecycle
 
 - Audit numbers are per repository: `001`, `002`, ...; choose `max(existing numeric run directories) + 1` when starting a **new** run. Never renumber or overwrite a run.
-- IDs are `FA-<run>-<finding>` (e.g., `FA-003-012`). For a new finding, use one more than the highest numeric finding suffix in either `findings` or `retired_findings`, starting at `001` when both are empty.
+- IDs are `SA-<run>-<finding>` (e.g., `SA-003-012`). For a new finding, use one more than the highest numeric finding suffix in either `findings` or `retired_findings`, starting at `001` when both are empty.
 - On resume, retain the run number and IDs. Check whether the source baseline changed since the recorded review. Re-check affected coverage and findings; report unresolved drift. Do not present merged observations from different versions as a single verified snapshot.
 - Store `state.yaml` after each review unit or material finding. Generate `report.md` at completion or interruption, including a pause or blocker. Writes within the audit folder do not authorize edits elsewhere in the project.
 - `running`: work ongoing. `complete`: every in-scope review unit meaningfully reviewed and each finding assessed or has a documented verification blocker. Findings with inconclusive evidence may remain if their evidence, uncertainty, and any blocker and next check are recorded. `partial`: audit paused with unfinished coverage or finding assessments. `blocked`: that unfinished work cannot continue with current access. A finding's verification blocker alone does not block completion; remaining uncertainty alone does not make a run partial.
@@ -49,7 +49,7 @@ coverage:
   - unit: "src/storage"
     status: queued
 findings:
-  - id: FA-003-001
+  - id: SA-003-001
     title: "Valid selection rejected after filtering"
     location: "src/parser.rs:88-110"
     confidence: confirmed
@@ -78,17 +78,17 @@ This example illustrates shape only, not actual audit evidence. `baseline` shoul
 - When looking up a retired ID, follow `merged_into` until reaching a finding or an entry with `state: removed`. Keep the recorded links when a merge target is later merged or removed. If a link is missing or the chain repeats an ID, report the original reference as unresolved.
 - Older states without `retired_findings` may have lost IDs before this rule existed. Before issuing a new ID in such a run, reconstruct the retired IDs from available records. For an ID known to have been issued whose record is gone, use `state: removed` if its merge target cannot be recovered. If the issued IDs cannot be established, issue new IDs in a new run.
 
-In this example, looking up `FA-003-003` reaches `FA-003-001` through `FA-003-002`. The next new ID is `FA-003-005`.
+In this example, looking up `SA-003-003` reaches `SA-003-001` through `SA-003-002`. The next new ID is `SA-003-005`.
 
 ```yaml
 retired_findings:
-  FA-003-003:
+  SA-003-003:
     state: merged
-    merged_into: FA-003-002
-  FA-003-002:
+    merged_into: SA-003-002
+  SA-003-002:
     state: merged
-    merged_into: FA-003-001
-  FA-003-004:
+    merged_into: SA-003-001
+  SA-003-004:
     state: removed
 ```
 
